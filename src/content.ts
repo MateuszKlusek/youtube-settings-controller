@@ -76,6 +76,8 @@ function setupMessageListener() {
       const videoId = payloadVideoId || urlVideoId || "";
       logger.registerVideoId(videoId);
 
+      logger.log({ type: "PAYLOAD", payload });
+
       logger.log({
         type: "VIDEO_ID_CHECK",
         payload: { urlVideoId, payloadVideoId },
