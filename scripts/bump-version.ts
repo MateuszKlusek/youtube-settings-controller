@@ -1,6 +1,10 @@
 import { exec } from "child_process";
 import fs from "fs";
 
+type JSONWithVersion = {
+  version: string;
+};
+
 function bumpVersion(version: string, release: string = "patch"): string {
   const [major, minor, patch] = version.split(".").map(Number);
   if (release === "major") return `${major + 1}.0.0`;
@@ -9,13 +13,15 @@ function bumpVersion(version: string, release: string = "patch"): string {
 }
 
 function updateVersion(file, newVersion) {
-  const data = JSON.parse(fs.readFileSync(file, "utf8"));
+  const data = JSON.parse(fs.readFileSync(file, "utf8")) as JSONWithVersion;
   data.version = newVersion;
   fs.writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
   console.log(`Updated ${file} → ${newVersion}`);
 }
 
-const pkg = JSON.parse(fs.readFileSync("package.json", "utf8"));
+const pkg = JSON.parse(
+  fs.readFileSync("package.json", "utf8")
+) as JSONWithVersion;
 const newVersion = bumpVersion(pkg.version, process.argv[2] || "patch");
 
 updateVersion("package.json", newVersion);
