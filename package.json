@@ -7,6 +7,9 @@
     "dev": "vite --config vite-configs/vite.config.dev.ts",
     "build:dev": "scripts/build-all.sh development",
     "build:prod": "scripts/build-all.sh production",
+    "bump:release:patch": "npx tsx scripts/bump-version.ts patch",
+    "bump:release:minor": "npx tsx scripts/bump-version.ts minor",
+    "bump:release:major": "npx tsx scripts/bump-version.ts major",
     "postbuild:copy": "cp manifest.json dist && cp public/icon.png dist",
     "lint": "eslint .",
     "preview": "vite preview"

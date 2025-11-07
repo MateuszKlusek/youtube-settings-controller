@@ -11,7 +11,8 @@
     "module": "ESNext",
     "types": [
       "vite/client",
-      "chrome"
+      "chrome",
+      "node"
     ],
     "noImplicitAny": false,
     "skipLibCheck": true,
