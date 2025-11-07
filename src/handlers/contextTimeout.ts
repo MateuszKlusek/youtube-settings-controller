@@ -1,4 +1,4 @@
-import { STORAGE_LOG_SIZE_LIMIT } from "../constants";
+import { QUEUE_LOGS_KEY, STORAGE_LOG_SIZE_LIMIT } from "../constants";
 import {
   typedStorageLocalGetter,
   typedStorageLocalSetter,
@@ -9,19 +9,19 @@ export const handleContextTimeout: ICallback = async (
   contextId,
   logMessages
 ) => {
-  const storageLogQueue = await typedStorageLocalGetter("queuedLogs");
-  const _queuedLogs = storageLogQueue?.queuedLogs || [];
+  const storageLocal = await typedStorageLocalGetter(QUEUE_LOGS_KEY);
+  let queuedLogsPayload = storageLocal?.[QUEUE_LOGS_KEY] || [];
 
-  if (_queuedLogs.length >= STORAGE_LOG_SIZE_LIMIT) {
-    _queuedLogs.shift();
+  if (queuedLogsPayload.length >= STORAGE_LOG_SIZE_LIMIT) {
+    queuedLogsPayload = queuedLogsPayload.slice(-(STORAGE_LOG_SIZE_LIMIT - 1));
   }
 
-  _queuedLogs.push({
+  queuedLogsPayload.push({
     id: contextId,
     date: new Date().toISOString(),
     logs: logMessages,
     videoId: logMessages?.[0]?.videoId,
   });
 
-  await typedStorageLocalSetter({ queuedLogs: _queuedLogs });
+  await typedStorageLocalSetter({ [QUEUE_LOGS_KEY]: queuedLogsPayload });
 };

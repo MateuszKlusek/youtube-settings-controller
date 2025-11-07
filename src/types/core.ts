@@ -57,14 +57,17 @@ export type RuntimeMessageType = RuntimeMessage["type"];
 
 // --------------------- Storage --------------------------------------- //
 
+export type QueuedLog = {
+  id: string;
+  date: Date | string;
+  logs: LogMessage[];
+  videoId: string | undefined;
+};
+
+export type QueueLogsKey = "queuedLogsDev" | "queuedLogs";
+
 export type StorageLocal = {
-  queuedLogs: {
-    id: string;
-    date: Date | string;
-    logs: LogMessage[];
-    videoId: string | undefined;
-  }[];
-  testing: number;
+  [key in QueueLogsKey]: QueuedLog[];
 };
 
 export type StorageSync = {

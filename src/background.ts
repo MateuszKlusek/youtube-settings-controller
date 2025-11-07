@@ -1,3 +1,4 @@
+import { ENVIRONMENT_NAME, QUEUE_LOGS_KEY } from "./constants";
 import { handleContextTimeout } from "./handlers/contextTimeout";
 import {
   typedRuntimeOnMessageAddListener,
@@ -33,15 +34,23 @@ typedRuntimeOnMessageAddListener((msg) => {
   }
 
   if (msg.type === "DOWNLOAD_LOG_FILE") {
-    typedStorageLocalGetter("queuedLogs")
-      .then(({ queuedLogs }) => {
+    typedStorageLocalGetter(QUEUE_LOGS_KEY)
+      .then((dataLocal) => {
+        const queuedLogsFromStorage = dataLocal?.[QUEUE_LOGS_KEY] || [];
+
         console.log(
           "Retrieved logs from storage:",
-          queuedLogs?.length || 0,
+          queuedLogsFromStorage?.length || 0,
           "entries"
         );
-        const logContent = JSON.stringify(queuedLogs || [], null, 2);
-        const blob = new Blob([logContent], { type: "application/json" });
+        const queuedLogsStringified = JSON.stringify(
+          queuedLogsFromStorage || [],
+          null,
+          2
+        );
+        const blob = new Blob([queuedLogsStringified], {
+          type: "application/json",
+        });
 
         const reader = new FileReader();
         reader.onloadend = () => {
@@ -52,7 +61,7 @@ typedRuntimeOnMessageAddListener((msg) => {
           chrome.downloads.download(
             {
               url: dataUrl,
-              filename: `yt-settings-controller-log-${timestamp}.json`,
+              filename: `yt-settings-controller-log-${ENVIRONMENT_NAME}-${timestamp}.json`,
               saveAs: true,
             },
             (downloadId) => {

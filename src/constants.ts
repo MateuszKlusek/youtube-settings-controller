@@ -1,3 +1,5 @@
+import type { QueueLogsKey } from "./types/core";
+
 export const MARKER = "__EXT_INJECT__";
 export const TOKEN_ATTRIBUTE = "data-token";
 
@@ -17,7 +19,7 @@ export const DOM_TARGETS = {
   VIDEO_PLAYER: "video.html5-main-video",
 };
 
-export const STORAGE_LOG_SIZE_LIMIT = 250;
+export const STORAGE_LOG_SIZE_LIMIT = 100;
 
 export const SHORT_LOGS = true;
 
@@ -25,3 +27,9 @@ export const SCRIPT_TYPES = {
   INITIAL_DATA: "initial-data",
   NAVIGATION_DATA: "navigation-data",
 };
+
+export const QUEUE_LOGS_KEY: QueueLogsKey = isDevelopment
+  ? "queuedLogsDev"
+  : "queuedLogs";
+
+export const ENVIRONMENT_NAME = isDevelopment ? "dev" : "prod";
