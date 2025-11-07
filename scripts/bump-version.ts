@@ -1,3 +1,4 @@
+import { exec } from "child_process";
 import fs from "fs";
 
 function bumpVersion(version: string, release: string = "patch"): string {
@@ -19,3 +20,23 @@ const newVersion = bumpVersion(pkg.version, process.argv[2] || "patch");
 
 updateVersion("package.json", newVersion);
 updateVersion("manifest.json", newVersion);
+
+console.log("Committing changes...");
+
+const gitCommandList = [
+  "git add .",
+  `git commit -m 'Bump version to ${newVersion}'`,
+  `git tag v${newVersion}`,
+];
+
+exec(gitCommandList.join(" && "), (error, stdout, stderr) => {
+  if (error) {
+    console.error(`Error: ${error.message}`);
+    return;
+  }
+  if (stderr) {
+    console.error(`Stderr: ${stderr}`);
+    return;
+  }
+  console.log(`Stdout: ${stdout}`);
+});
