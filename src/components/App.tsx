@@ -10,8 +10,10 @@ import {
 import type { Message } from "../types/core";
 
 export const App = () => {
-  const [extensionEnabled, setExtensionEnabled] =
-    useChromeStorage("extensionEnabled");
+  const [extensionEnabled, setExtensionEnabled] = useChromeStorage(
+    "extensionEnabled",
+    true
+  );
 
   const downloadButtonLoading = useIsLoading();
 
