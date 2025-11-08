@@ -21,6 +21,7 @@ export const handleContextTimeout: ICallback = async (
     date: new Date().toISOString(),
     logs: logMessages,
     videoId: logMessages?.[0]?.videoId,
+    version: logMessages?.[0]?.version,
   });
 
   await typedStorageLocalSetter({ [QUEUE_LOGS_KEY]: queuedLogsPayload });

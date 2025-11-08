@@ -62,6 +62,7 @@ export type QueuedLog = {
   date: Date | string;
   logs: LogMessage[];
   videoId: string | undefined;
+  version: string;
 };
 
 export type QueueLogsKey = "queuedLogsDev" | "queuedLogs";

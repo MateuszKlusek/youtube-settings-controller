@@ -46,7 +46,10 @@ function setupMessageListener() {
     if (!storageProperties?.extensionEnabled) return;
 
     const uuid = crypto.randomUUID();
-    const logger = new Logger(uuid);
+    const logger = new Logger({
+      contextId: uuid,
+      version: chrome.runtime.getManifest().version,
+    });
     const videoIdentityManager = new VideoIdentityManager();
 
     try {
@@ -76,8 +79,7 @@ function setupMessageListener() {
       const videoId = payloadVideoId || urlVideoId || "";
       logger.registerVideoId(videoId);
 
-      logger.log({ type: "PAYLOAD", payload });
-
+      logger.log({ type: "PAYLOAD", payload, sendMessageToBackground: false });
       logger.log({
         type: "VIDEO_ID_CHECK",
         payload: { urlVideoId, payloadVideoId },

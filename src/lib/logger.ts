@@ -9,11 +9,12 @@ export type LogMessage = {
   logId: string;
   seq: number;
   videoId: string | undefined;
+  version: string;
 };
 
 type PayloadMessage = Omit<
   LogMessage,
-  "date" | "contextId" | "seq" | "logId" | "videoId"
+  "date" | "contextId" | "seq" | "logId" | "videoId" | "version"
 > & {
   sendMessageToBackground?: boolean;
 };
@@ -22,10 +23,12 @@ export class Logger {
   private contextId: string;
   private seq: number;
   private videoId: string | undefined;
+  private version: string;
 
-  constructor(contextId: string) {
+  constructor({ contextId, version }: { contextId: string; version: string }) {
     this.contextId = contextId;
     this.seq = 0;
+    this.version = version;
   }
 
   public registerVideoId(videoId: string) {
@@ -45,6 +48,7 @@ export class Logger {
       seq: this.seq,
       logId: crypto.randomUUID(),
       videoId: this.videoId,
+      version: this.version,
     };
 
     if (isDevelopment) {
