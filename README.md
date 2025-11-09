@@ -61,7 +61,7 @@ This extension automatically manages YouTube video audio tracks by:
 ### Development Workflow
 
 1. Make changes to the source files
-2. Run `dev` for popup development (under construction)
+2. Run `dev` for popup development
 3. Run `build:dev` to build dist files
 4. Reload the extension in Chrome to test changes
 
@@ -135,4 +135,4 @@ Logs can be downloaded as JSON files for analysis and debugging.
 
 MIT License
 
-[![Version](https://img.shields.io/badge/version-0.2.3-blue.svg)](https://github.com/your-username/your-repo/releases/tag/v0.2.3)
+[![Version](https://img.shields.io/badge/version-0.2.3-blue.svg)](https://github.com/your-username/your-repo/releases/tag/v0.3.0)
