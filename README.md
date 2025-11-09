@@ -99,7 +99,6 @@ This extension automatically manages YouTube video audio tracks by:
 
 The extension requires the following permissions:
 
-- `tabs` - To interact with YouTube tabs
 - `storage` - To store extension settings and logs
 - `downloads` - To download log files
 - `https://www.youtube.com/*` - To run on YouTube pages
