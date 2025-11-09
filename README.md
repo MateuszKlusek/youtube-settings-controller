@@ -135,4 +135,4 @@ Logs can be downloaded as JSON files for analysis and debugging.
 
 MIT License
 
-[![Version](https://img.shields.io/badge/version-0.2.0-blue.svg)](https://github.com/your-username/your-repo/releases/tag/v0.2.0)
+[![Version](https://img.shields.io/badge/version-0.2.3-blue.svg)](https://github.com/your-username/your-repo/releases/tag/v0.2.3)
