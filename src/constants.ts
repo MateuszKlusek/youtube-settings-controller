@@ -33,3 +33,7 @@ export const QUEUE_LOGS_KEY: QueueLogsKey = isDevelopment
   : "queuedLogs";
 
 export const ENVIRONMENT_NAME = isDevelopment ? "dev" : "prod";
+
+export const ERROR_MESSAGES = {
+  CHROME_APIS_NOT_AVAILABLE: "Chrome APIs not available",
+};

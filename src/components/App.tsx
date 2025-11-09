@@ -1,5 +1,6 @@
 import { Button, Container, Divider, Switch, Title } from "@mantine/core";
 import { useEffect } from "react";
+import { ERROR_MESSAGES } from "../constants";
 import { useChromeStorage } from "../hooks/useChromeStorage";
 import { useIsLoading } from "../hooks/useIsLoading";
 import {
@@ -34,24 +35,33 @@ export const App = () => {
   const handleDownloadLogs = async () => {
     downloadButtonLoading.startLoading();
     try {
-      await new Promise<{ ok: boolean; error?: string }>((resolve) => {
-        typedRuntimeSendMessage({ type: "DOWNLOAD_LOG_FILE" }, (response) => {
-          if (chrome.runtime.lastError) {
-            resolve({ ok: false, error: chrome.runtime.lastError.message });
-          } else {
-            resolve(response || { ok: false, error: "No response" });
-          }
-        });
-      });
+      const response = await new Promise<{ ok: boolean; error?: string }>(
+        (resolve) => {
+          typedRuntimeSendMessage({ type: "DOWNLOAD_LOG_FILE" }, (response) => {
+            if (chrome.runtime?.lastError) {
+              resolve({ ok: false, error: chrome.runtime.lastError.message });
+            } else {
+              resolve(response || { ok: false, error: "No response" });
+            }
+          });
+        }
+      );
+
+      if (response?.error === ERROR_MESSAGES.CHROME_APIS_NOT_AVAILABLE) {
+        setTimeout(() => {
+          downloadButtonLoading.stopLoading();
+        }, 500);
+      }
     } catch (error) {
       console.error("Error during download:", error);
+      downloadButtonLoading.stopLoading();
     }
   };
 
   return (
     <Container
       size="md"
-      className="flex flex-col justify-center gap-4 py-4 px-6"
+      className="flex flex-col justify-center gap-4 py-4 px-6 bg-white flex-1"
     >
       <Title order={5}>YouTube Settings Controller</Title>
       <Switch
