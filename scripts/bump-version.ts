@@ -44,7 +44,8 @@ const updateReadmeVersion = (path: string, newVersion: string) => {
 // --------------------------------- main ------------------------------------- //
 
 updateVersion("package.json", newVersion);
-updateVersion("manifest.json", newVersion);
+updateVersion("manifests/manifest.json", newVersion);
+updateVersion("manifests/manifest-dev.json", newVersion);
 updateReadmeVersion("README.md", newVersion);
 
 console.log("Committing changes...");
