@@ -6,6 +6,19 @@ tsc -b
 
 MODE="$1"
 
+if [ "$MODE" != "development" ] && [ "$MODE" != "production" ]; then
+    echo "Invalid mode: $MODE"
+    exit 1
+fi
+
+if [ "$MODE" = "development" ]; then
+    manifest="manifests/manifest-dev.json"
+    icon="public/icon-dev.png"
+else
+    manifest="manifests/manifest.json"
+    icon="public/icon.png"
+fi
+
 vite_configs=(
     "vite.popup.config.ts"
     "vite.background.config.ts"
@@ -19,7 +32,7 @@ for config in "${vite_configs[@]}"; do
    vite build --config ./vite-configs/$config --mode $MODE
 done
 
-echo "Running postbuild copy..."
-npm run postbuild:copy
+cp $manifest dist/manifest.json
+cp $icon dist/icon.png
 
 echo "Build complete!"
