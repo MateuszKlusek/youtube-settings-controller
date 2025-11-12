@@ -1,4 +1,4 @@
-import { isDevelopment, SHORT_LOGS } from "../constants";
+import { debugLogsEnabled, SHORT_LOGS } from "../constants";
 import { typedRuntimeSendMessage } from "./chrome";
 
 export type LogMessage = {
@@ -51,7 +51,7 @@ export class Logger {
       version: this.version,
     };
 
-    if (isDevelopment) {
+    if (debugLogsEnabled) {
       if (SHORT_LOGS) {
         const shortLog = {
           videoId: logItem.videoId,
@@ -72,7 +72,7 @@ export class Logger {
           }
         })
         .catch((error) => {
-          if (isDevelopment) {
+          if (debugLogsEnabled) {
             console.warn("Failed to send log message:", error);
           }
         });

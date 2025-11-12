@@ -4,7 +4,10 @@ export const MARKER = "__EXT_INJECT__";
 export const TOKEN_ATTRIBUTE = "data-token";
 
 // no defaulting to empty values, I want an explicitly defined value for each mode
-export const isDevelopment = import.meta.env.MODE === "development";
+export const isDevelopment =
+  import.meta.env.MODE === "dev" || import.meta.env.MODE === "staging";
+
+export const debugLogsEnabled = import.meta.env.MODE === "dev";
 export const isProduction = import.meta.env.MODE === "production";
 
 export const DOM_TARGETS = {
@@ -32,7 +35,7 @@ export const QUEUE_LOGS_KEY: QueueLogsKey = isDevelopment
   ? "queuedLogsDev"
   : "queuedLogs";
 
-export const ENVIRONMENT_NAME = isDevelopment ? "dev" : "prod";
+export const ENVIRONMENT_NAME = import.meta.env.MODE;
 
 export const ERROR_MESSAGES = {
   CHROME_APIS_NOT_AVAILABLE: "Chrome APIs not available",

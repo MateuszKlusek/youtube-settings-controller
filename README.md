@@ -33,6 +33,8 @@ This extension automatically manages YouTube video audio tracks by:
    ```bash
    npm run build:dev
    # or
+   npm run build:staging
+   # or
    npm run build:prod
    ```
 
@@ -53,6 +55,7 @@ This extension automatically manages YouTube video audio tracks by:
 
 - `dev` - Start development server for extension popup with hot reload
 - `build:dev` - Build for development
+- `build:staging` - Build for staging
 - `build:prod` - Build for production
 - `bump:release:patch` - Bump patch version
 - `bump:release:minor` - Bump minor version
@@ -62,8 +65,10 @@ This extension automatically manages YouTube video audio tracks by:
 
 1. Make changes to the source files
 2. Run `dev` for popup development
-3. Run `build:dev` to build dist files
-4. Reload the extension in Chrome to test changes
+3. Run `build:dev` to build dist files for development
+4. Run `build:staging` to build dist files for staging
+5. Run `build:prod` to build dist files for production
+6. Reload the extension in Chrome to test changes
 
 ## Architecture
 

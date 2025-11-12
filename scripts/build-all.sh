@@ -6,12 +6,13 @@ tsc -b
 
 MODE="$1"
 
-if [ "$MODE" != "development" ] && [ "$MODE" != "production" ]; then
+modes=("dev" "staging" "prod")
+if ! [[ "${modes[@]}" =~ "$MODE" ]]; then
     echo "Invalid mode: $MODE"
     exit 1
 fi
 
-if [ "$MODE" = "development" ]; then
+if [ "$MODE" = "dev" ] || [ "$MODE" = "staging" ]; then
     manifest="manifests/manifest-dev.json"
     icon="public/icon-dev.png"
 else
