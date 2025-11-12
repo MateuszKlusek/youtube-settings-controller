@@ -1,6 +1,6 @@
 import { Button, Container, Divider, Switch, Title } from "@mantine/core";
 import { useEffect } from "react";
-import { ERROR_MESSAGES } from "../constants";
+import { ERROR_MESSAGES, isDevelopment } from "../constants";
 import { useChromeStorage } from "../hooks/useChromeStorage";
 import { useIsLoading } from "../hooks/useIsLoading";
 import {
@@ -63,7 +63,9 @@ export const App = () => {
       size="md"
       className="flex flex-col justify-center gap-4 py-4 px-6 bg-white flex-1"
     >
-      <Title order={5}>YouTube Settings Controller</Title>
+      <Title order={5}>
+        YouTube Settings Controller {isDevelopment ? "[DEV]" : ""}
+      </Title>
       <Switch
         checked={!!extensionEnabled}
         label="Extension enabled"
