@@ -21,6 +21,8 @@ export async function executeSequence({
 }): Promise<SequenceExecutionResult> {
   // TODO implement state defaulting
   try {
+    let status: SequenceExecutionResult = "FAILED";
+
     if (signal.aborted) throw new Error("Sequence aborted");
 
     await retry(
@@ -45,12 +47,16 @@ export async function executeSequence({
 
     await retry(
       async () =>
-        await clickOnOption({ defaultAudioTrackDisplayName, logger, signal }),
+        (status = await clickOnOption({
+          defaultAudioTrackDisplayName,
+          logger,
+          signal,
+        })),
       10,
       1000,
       signal
     );
-    return "SUCCESS";
+    return status;
   } catch (error) {
     const isSkipped =
       error instanceof Error && error.message.includes("Skipped");

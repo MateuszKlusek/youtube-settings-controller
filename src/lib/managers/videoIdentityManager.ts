@@ -27,7 +27,7 @@ export class VideoIdentityManager extends ClassWithLogging {
      * critical, if the size is non zero, and the videoId is not in the set
      * with a success, I expect the videoId to be in the set
      */
-    if (!this.videoIds.has(videoId)) {
+    if (this.videoIds.has(videoId)) {
       this.log(
         `Video ID ${videoId} already registered, looks like the video is the same, refresh required`
       );

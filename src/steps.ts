@@ -4,6 +4,7 @@ import {
   waitForElementToAppear,
   waitForElementToDisappear,
 } from "./lib/observer";
+import type { SequenceExecutionResult } from "./types/core";
 
 export async function toggleSettingsMenu({
   logger,
@@ -71,7 +72,9 @@ export const clickOnOption = async ({
   defaultAudioTrackDisplayName: string;
   logger: Logger;
   signal: AbortSignal;
-}): Promise<boolean> => {
+}): Promise<SequenceExecutionResult> => {
+  let status: SequenceExecutionResult = "FAILED";
+
   await waitForElementToDisappear({
     callback: async () => {},
     selector: DOM_TARGETS.AUDIO_TRACK_MENU_ITEM,
@@ -104,11 +107,13 @@ export const clickOnOption = async ({
           type: "CLICKED_ON_WANTED_AUDIO_TRACK",
           payload: defaultAudioTrackDisplayName,
         });
+        status = "SUCCESS_CHANGED";
       } else {
         logger.log({
           type: "SKIPPED_AUDIO_TRACK_SELECTION_IS_DEFAULT",
           payload: selectedAudioTrackText,
         });
+        status = "SUCCESS_NO_CHANGE";
       }
     },
     selector: DOM_TARGETS.SELECTED_AUDIO_TRACK,
@@ -117,5 +122,5 @@ export const clickOnOption = async ({
   });
 
   await toggleSettingsMenu({ logger, goal: "close", signal });
-  return true;
+  return status;
 };

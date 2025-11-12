@@ -111,7 +111,7 @@ function setupMessageListener() {
             payload: `Executing sequence for videoId: ${videoId}`,
           });
 
-          for (let attempts = 1; attempts <= 3; attempts++) {
+          for (let attempts = 1; attempts <= 2; attempts++) {
             const sequenceExecutionResult = await executeSequence({
               defaultAudioTrackDisplayName,
               logger,
@@ -121,7 +121,7 @@ function setupMessageListener() {
 
             if (signal.aborted) break;
 
-            if (sequenceExecutionResult === "SUCCESS") {
+            if (sequenceExecutionResult === "SUCCESS_CHANGED") {
               const registerVideoIdResult =
                 await videoIdentityManager.registerVideoId();
               if (registerVideoIdResult === "restart") {

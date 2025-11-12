@@ -85,4 +85,8 @@ export type Message = Parameters<MessageListener>[0];
 
 // --------------------- Sequence Execution -------------------------------- //
 
-export type SequenceExecutionResult = "SUCCESS" | "SKIPPED" | "FAILED";
+export type SequenceExecutionResult =
+  | "SUCCESS_CHANGED"
+  | "SUCCESS_NO_CHANGE"
+  | "SKIPPED"
+  | "FAILED";
