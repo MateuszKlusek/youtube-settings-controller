@@ -3,7 +3,7 @@ import {
   typedStorageLocalGetter,
   typedStorageLocalSetter,
 } from "../lib/chrome";
-import type { ICallback } from "../lib/managers/contextTimeoutManager";
+import type { ICallback } from "../lib/managers/context-timeout-manager";
 
 export const handleContextTimeout: ICallback = async (
   contextId,

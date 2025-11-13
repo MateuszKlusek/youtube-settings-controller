@@ -1,5 +1,5 @@
 import { DOM_TARGETS } from "../../constants";
-import { ClassWithLogging } from "../tagLogging";
+import { ClassWithLogging } from "../tag-logging";
 
 export class VideoIdentityManager extends ClassWithLogging {
   private videoIds: Set<string> = new Set();

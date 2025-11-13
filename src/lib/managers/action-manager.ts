@@ -1,4 +1,4 @@
-import { ClassWithLogging } from "../tagLogging";
+import { ClassWithLogging } from "../tag-logging";
 
 export class ActionManager extends ClassWithLogging {
   private activeExecutions: Map<string, Promise<void>> = new Map();

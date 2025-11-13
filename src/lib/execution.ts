@@ -5,7 +5,7 @@ import {
 } from "../steps";
 import type { SequenceExecutionResult } from "../types/core";
 import { Logger } from "./logger";
-import { VideoIdentityManager } from "./managers/videoIdentityManager";
+import { VideoIdentityManager } from "./managers/video-identity-manager";
 import { retry } from "./misc";
 
 export async function executeSequence({

@@ -1,4 +1,4 @@
-import { ClassWithLogging } from "../tagLogging";
+import { ClassWithLogging } from "../tag-logging";
 
 export class AbortControllerManager extends ClassWithLogging {
   private abortControllers: Map<number, AbortController> = new Map();

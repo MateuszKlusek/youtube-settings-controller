@@ -1,10 +1,10 @@
 import { MARKER } from "./constants";
 import { executeSequence } from "./lib/execution";
 import { Logger } from "./lib/logger";
-import { AbortControllerManager } from "./lib/managers/abortControllerManager";
-import { ActionManager } from "./lib/managers/actionManager";
-import { SetupMessageListenerManager } from "./lib/managers/setupMessageListenerManager";
-import { VideoIdentityManager } from "./lib/managers/videoIdentityManager";
+import { AbortControllerManager } from "./lib/managers/abort-controller-manager";
+import { ActionManager } from "./lib/managers/action-manager";
+import { SetupMessageListenerManager } from "./lib/managers/setup-message-listener-manager";
+import { VideoIdentityManager } from "./lib/managers/video-identity-manager";
 import { getTracksDataFromPayload, getVideoIdFromUrl } from "./lib/misc";
 import { injectExternalScript, makeToken } from "./lib/scripts";
 import type { YTData } from "./types/core";

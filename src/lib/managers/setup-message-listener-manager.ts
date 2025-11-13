@@ -1,4 +1,4 @@
-import { ClassWithLogging } from "../tagLogging";
+import { ClassWithLogging } from "../tag-logging";
 
 export class SetupMessageListenerManager extends ClassWithLogging {
   private messageListenerVersion: number = 0;

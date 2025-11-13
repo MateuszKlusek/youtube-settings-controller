@@ -5,7 +5,7 @@ import {
   typedRuntimeSendMessage,
   typedStorageLocalGetter,
 } from "./lib/chrome";
-import { ContextTimeoutManager } from "./lib/managers/contextTimeoutManager";
+import { ContextTimeoutManager } from "./lib/managers/context-timeout-manager";
 import { registerDownloadsListeners } from "./listeners/downloads";
 import type { ActiveDownloadsMap } from "./types/core";
 
