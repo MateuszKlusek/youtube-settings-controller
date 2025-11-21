@@ -72,14 +72,18 @@ export const App = () => {
         onChange={(event) => setExtensionEnabled?.(event.currentTarget.checked)}
       />
 
-      <Divider color="blue" size="xs" />
-      <Button
-        onClick={handleDownloadLogs}
-        loading={downloadButtonLoading.isLoading}
-        size="compact-sm"
-      >
-        Download logs
-      </Button>
+      {isDevelopment && (
+        <>
+          <Divider color="blue" size="xs" />
+          <Button
+            onClick={handleDownloadLogs}
+            loading={downloadButtonLoading.isLoading}
+            size="compact-sm"
+          >
+            Download logs
+          </Button>
+        </>
+      )}
     </Container>
   );
 };

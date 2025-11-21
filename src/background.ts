@@ -1,4 +1,4 @@
-import { ENVIRONMENT_NAME, QUEUE_LOGS_KEY } from "./constants";
+import { ENVIRONMENT_NAME, isProduction, QUEUE_LOGS_KEY } from "./constants";
 import { handleContextTimeout } from "./handlers/contextTimeout";
 import {
   typedRuntimeOnMessageAddListener,
@@ -34,6 +34,10 @@ typedRuntimeOnMessageAddListener((msg) => {
   }
 
   if (msg.type === "DOWNLOAD_LOG_FILE") {
+    if (isProduction) {
+      return false;
+    }
+
     typedStorageLocalGetter(QUEUE_LOGS_KEY)
       .then((dataLocal) => {
         const queuedLogsFromStorage = dataLocal?.[QUEUE_LOGS_KEY] || [];

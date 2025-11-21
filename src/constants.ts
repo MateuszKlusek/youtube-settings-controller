@@ -8,7 +8,7 @@ export const isDevelopment =
   import.meta.env.MODE === "dev" || import.meta.env.MODE === "staging";
 
 export const debugLogsEnabled = import.meta.env.MODE === "dev";
-export const isProduction = import.meta.env.MODE === "production";
+export const isProduction = import.meta.env.MODE === "prod";
 
 export const DOM_TARGETS = {
   SETTINGS_BUTTON: "button.ytp-settings-button",

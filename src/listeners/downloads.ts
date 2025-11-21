@@ -1,3 +1,4 @@
+import { isProduction } from "../constants";
 import { typedRuntimeSendMessage } from "../lib/chrome";
 import type { ActiveDownloadsMap } from "../types/core";
 
@@ -8,6 +9,10 @@ export const registerDownloadsListeners = ({
 }: {
   activeDownloads: ActiveDownloadsMap;
 }) => {
+  if (isProduction) {
+    return;
+  }
+
   return chrome.downloads.onChanged.addListener((downloadDelta) => {
     const downloadId = downloadDelta.id;
 

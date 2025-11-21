@@ -1,4 +1,4 @@
-import { debugLogsEnabled, SHORT_LOGS } from "../constants";
+import { debugLogsEnabled, isDevelopment, SHORT_LOGS } from "../constants";
 import { typedRuntimeSendMessage } from "./chrome";
 
 export type LogMessage = {
@@ -64,7 +64,7 @@ export class Logger {
       }
     }
 
-    if (sendMessageToBackground) {
+    if (sendMessageToBackground && isDevelopment) {
       typedRuntimeSendMessage({ type: "LOG_ENTRY", logItem })
         .then(() => {
           if (chrome.runtime.lastError) {
