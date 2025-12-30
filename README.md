@@ -116,9 +116,9 @@ The extension requires the following permissions:
 - **Language**: TypeScript
 - **Styling**: Mantine UI with Tailwind CSS
 
-## Logging
+## Logging for
 
-The extension maintains detailed logs of all actions:
+The extension maintains detailed logs of all actions (works only for development mode):
 
 - Logs are stored in Chrome local storage
 - Maximum 100 latest entries per context ID
