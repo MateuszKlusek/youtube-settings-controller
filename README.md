@@ -140,4 +140,4 @@ Logs can be downloaded as JSON files for analysis and debugging.
 
 MIT License
 
-[![Version](https://img.shields.io/badge/version-0.3.4-blue.svg)](https://github.com/mateuszklusek/youtube-settings-controller/releases/tag/v0.3.4)
+[![Version](https://img.shields.io/badge/version-0.4.0-blue.svg)](https://github.com/mateuszklusek/youtube-settings-controller/releases/tag/v0.4.0)
