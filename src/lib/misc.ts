@@ -1,3 +1,4 @@
+import { DEFAULT_LANGUAGE_IDENTIFIER } from "../constants";
 import type { YTData } from "../types/core";
 
 export const retry = async <T>(
@@ -61,12 +62,18 @@ export const getTracksDataFromPayload = (
 } => {
   let defaultAudioTrackDisplayName;
   const audioIdToDisplayNameLookup = new Map<string, string>();
+
   payload?.streamingData?.adaptiveFormats?.forEach((i) => {
     if (i.audioTrack) {
       audioIdToDisplayNameLookup.set(i.audioTrack.id, i.audioTrack.displayName);
     }
-    if (!i.audioTrack?.isAutoDubbed) {
-      defaultAudioTrackDisplayName = i.audioTrack?.displayName;
+  });
+
+  // heuristics with default languages
+  // language ends with ".4", like pl.4, en.4, etc.
+  audioIdToDisplayNameLookup.forEach((displayName, id) => {
+    if (id.endsWith(DEFAULT_LANGUAGE_IDENTIFIER)) {
+      defaultAudioTrackDisplayName = displayName;
     }
   });
 

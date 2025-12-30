@@ -40,3 +40,5 @@ export const ENVIRONMENT_NAME = import.meta.env.MODE;
 export const ERROR_MESSAGES = {
   CHROME_APIS_NOT_AVAILABLE: "Chrome APIs not available",
 };
+
+export const DEFAULT_LANGUAGE_IDENTIFIER = ".4";
