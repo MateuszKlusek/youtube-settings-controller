@@ -11,6 +11,11 @@ This extension automatically manages YouTube video audio tracks by:
 - Automatically opening the settings menu and selecting the default audio track
 - Providing logging capabilities for debugging and monitoring
 
+## Package Manager / Installation Note
+
+> ⚠️ PNPM is **required** to install dependencies.
+> Running `npm install` or `yarn install` might cause build errors
+
 ## Installation
 
 ### From Source
@@ -22,13 +27,19 @@ This extension automatically manages YouTube video audio tracks by:
    cd youtube-settings-controller
    ```
 
-2. Install dependencies:
+2. Ensure PNPM is installed globally:
 
    ```bash
-   npm install
+   npm install -g pnpm
    ```
 
-3. Build the extension:
+3. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+4. Build the extension:
 
    ```bash
    npm run build:dev
@@ -38,7 +49,7 @@ This extension automatically manages YouTube video audio tracks by:
    npm run build:prod
    ```
 
-4. Load the extension in Chrome:
+5. Load the extension in Chrome:
    - Open Chrome and navigate to `chrome://extensions/`
    - Enable "Developer mode"
    - Click "Load unpacked"
@@ -48,8 +59,9 @@ This extension automatically manages YouTube video audio tracks by:
 
 ### Prerequisites
 
-- Node.js
-- npm
+- Node.js (>=22)
+- pnpm (>=10, required for installation)
+- npm (>=10)
 
 ### Available Scripts
 
