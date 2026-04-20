@@ -7,7 +7,7 @@ import type { ICallback } from "../lib/managers/context-timeout-manager";
 
 export const handleContextTimeout: ICallback = async (
   contextId,
-  logMessages
+  logMessages,
 ) => {
   const storageLocal = await typedStorageLocalGetter(QUEUE_LOGS_KEY);
   let queuedLogsPayload = storageLocal?.[QUEUE_LOGS_KEY] || [];

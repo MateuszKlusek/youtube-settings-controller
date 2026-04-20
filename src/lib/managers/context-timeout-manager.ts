@@ -4,7 +4,7 @@ type ContextMap = Record<string, LogMessage[]>;
 
 export type ICallback = (
   contextId: string,
-  logMessages: LogMessage[]
+  logMessages: LogMessage[],
 ) => Promise<void>;
 
 export class ContextTimeoutManager {
